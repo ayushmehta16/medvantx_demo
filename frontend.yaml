@@ -3,10 +3,8 @@ kind: Deployment
 metadata:
   name: frontend
   namespace: ingress-basic
-  labels:
-    app: frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -16,24 +14,20 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend
-        image: mrityunjay0010/frontend:latest
-        ports:
-        - containerPort: 80
+        - name: frontend
+          image: mrityunjay0010/frontend:latest
+          ports:
+            - containerPort: 80
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-service
+  name: frontend
   namespace: ingress-basic
-  labels:
-    app: frontend
 spec:
   type: ClusterIP
   selector:
     app: frontend
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+    - port: 80
