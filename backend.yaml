@@ -17,7 +17,7 @@ spec:
         - name: backend
           image: mrityunjay0010/backend:latest
           ports:
-            - containerPort: 80
+            - containerPort: 3030
 
 ---
 apiVersion: v1
@@ -31,3 +31,4 @@ spec:
     app: backend
   ports:
     - port: 80
+      targetPort: 3030
